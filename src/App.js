@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Search from "./Search";
+import Table from "./Table";
 
-function App() {
+class App extends React.Component{
+
+  state = {
+    animals: [],
+    breeds: []
+  }
+  
+  receiveAnimalData = (array1, array2) => {
+    console.log(array1);
+    console.log(array2);
+    this.setState({ animals: array1, breeds:array2 });
+  };
+
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Search animals={this.state.animals} breed={this.state.breeds}/>
+      <Table sendData={this.receiveAnimalData}/>
+    </React.Fragment>
   );
+  }
 }
 
 export default App;
